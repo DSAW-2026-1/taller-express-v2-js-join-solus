@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 3000;
-
+const PORT = process.env.PORT || port;
 app.use(cors());
 app.use(express.json());
 
@@ -50,8 +50,8 @@ app.get('/request', (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`Servidor escuchando en http://localhost:${PORT}`);
     console.log('Usuarios cargados: ADMIN y USER');
 });
 
