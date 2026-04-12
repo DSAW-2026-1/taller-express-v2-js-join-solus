@@ -1,11 +1,9 @@
-// ESTE ARCHIVO DEBE SER MOVIDO A /api/index.js
-// O puedes dejarlo aquí, pero Vercel prefiere la carpeta /api/
-
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 3000;
 const PORT = process.env.PORT || port;
+
 app.use(cors());
 app.use(express.json());
 
@@ -53,11 +51,9 @@ app.get('/request', (req, res) => {
     }
 });
 
-// Solo ejecutar app.listen si no estamos en Vercel
+// Importante para Vercel: No llamar a app.listen() en producción
 if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT, () => {
-        console.log(`Servidor escuchando en http://localhost:${PORT}`);
-    });
+    app.listen(PORT, () => console.log(`Local: http://localhost:${PORT}`));
 }
 
 module.exports = app;
