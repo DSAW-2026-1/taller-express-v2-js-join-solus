@@ -37,7 +37,7 @@ app.post('/login', (req, res) => {
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
-        res.status(200).json({ token: 'token..' });
+        res.status(200).json({ token: 'token.. '+user.role });
     } else {
         res.status(400).json({ message: 'invalid credentials' });
     }
