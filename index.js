@@ -44,7 +44,8 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/request', (req, res) => {
-    const role = req.headers['role'];
+    
+    const role = req.headers['role']?.toUpperCase();
 
     if (role === 'ADMIN') {
         res.status(200).json({ message: 'Hi from ADMIN' });
