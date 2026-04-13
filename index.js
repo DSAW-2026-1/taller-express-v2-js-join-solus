@@ -28,6 +28,10 @@ app.get('/users', (req, res) => {
     res.json(users.map(u => ({ username: u.username, role: u.role })));
 });
 
+app.get('/login', (req, res) => {
+    res.status(405).json({ message: 'El método GET no está permitido en esta ruta. Por favor, usa POST para iniciar sesión.' });
+});
+
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     const user = users.find(u => u.username === username && u.password === password);
@@ -51,7 +55,6 @@ app.get('/request', (req, res) => {
     }
 });
 
-// Importante para Vercel: No llamar a app.listen() en producción
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => console.log(`Local: http://localhost:${PORT}`));
 }
